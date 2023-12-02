@@ -1,0 +1,311 @@
+<mat-stepper #stepper>
+    <mat-step>
+        <form>
+            <table>
+                <ng-template matStepLabel>Project description</ng-template>
+                <tr>
+                    <td>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Username</mat-label>
+                            <input
+                                matInput
+                                placeholder="insert your username"
+                                required
+                            />
+                        </mat-form-field>
+                    </td>
+
+                    <td>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Date extract RNE</mat-label>
+                            <input
+                                formControlName="dateRNE"
+                                matInput
+                                [matDatepicker]="picker"
+                            />
+                            <mat-hint>MM/DD/YYYY</mat-hint>
+                            <mat-datepicker-toggle
+                                matIconSuffix
+                                [for]="picker"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Project Name</mat-label>
+                            <input
+                                matInput
+                                placeholder="insert your Project Name"
+                                required
+                            />
+                        </mat-form-field>
+                    </td>
+
+                    <td>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Project Code</mat-label>
+                            <input
+                                matInput
+                                placeholder="insert your Project Code"
+                                required
+                            />
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Project Cost</mat-label>
+                            <input
+                                type="number"
+                                matInput
+                                placeholder="insert your Project Cost"
+                                required
+                            />
+                        </mat-form-field>
+                    </td>
+
+                    <td>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Funding agency</mat-label>
+                            <input
+                                matInput
+                                placeholder="insert your Funding agency "
+                                required
+                            />
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Execution agency</mat-label>
+                            <input
+                                matInput
+                                placeholder="insert your Execution agency "
+                                required
+                            />
+                        </mat-form-field>
+                    </td>
+
+                    <td>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Project Status</mat-label>
+                            <mat-select
+                                matNativeControl
+                                placeholder="Please Select Your Project Status"
+                            >
+                                <mat-option> Design </mat-option>
+                                <mat-option> Implimentation </mat-option>
+                                <mat-option> Completed </mat-option>
+                                <mat-option> Other </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <div>
+                    <button
+                        mat-button
+                        matStepperNext
+                        mat-raised-button
+                        color="primary"
+                        style="
+                            font-size: 12px !important;
+                            padding: 4px 8px !important;
+                        "
+                    >
+                        Next
+                    </button>
+                </div>
+            </table>
+        </form>
+    </mat-step>
+
+    <mat-step label="Project Site and Duration">
+        <form>
+            <tr>
+                <td>
+                   <mat-form-field appearance="fill">
+                     <mat-label>Continent</mat-label>
+                     <mat-select
+                       matNativeControl
+                       placeholder="Please Select Your Project Status"
+                       [(value)]="selectedContinent"
+                       (selectionChange)="onContinentChange()"
+                       >
+                       <mat-option
+                         *ngFor="let continent of continents"
+                         [value]="continent.name"
+                         >{{ continent.name }}</mat-option
+                       >
+                     </mat-select>
+                   </mat-form-field>
+                </td>
+
+                <td>
+                   <mat-form-field appearance="fill">
+                     <mat-label>Country</mat-label>
+                     <mat-select
+                       matNativeControl
+                       placeholder="Please Select Your Country"
+                       [(value)]="selectedCountry"
+                     >
+                       <mat-option
+                         *ngFor="let country of countries"
+                         [value]="country"
+                         >{{ country }}</mat-option
+                       >
+                     </mat-select>
+                   </mat-form-field>
+                </td>
+               </tr>
+
+            <tr>
+                <td>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Soil type </mat-label>
+                        <mat-select
+                            matNativeControl
+                            placeholder="Please Select Your Soil type"
+                            [(value)]="selectedCountry"
+                        >
+                            <mat-option>Saline Soil </mat-option>
+                            <mat-option> Desert Soil </mat-option>
+                            <mat-option>Mountain (Forest) Soil </mat-option>
+                            <mat-option>Alluvial Soil </mat-option>
+                            <mat-option>Volcanic Soil </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Total duration of accounting</mat-label>
+                        <input
+                            matInput
+                            placeholder="insert your Total duration of accounting "
+                            required
+                        />
+                    </mat-form-field>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Project duration </mat-label>
+
+                        <input
+                            matInput
+                            placeholder="Please Insert Your Implimentation Phase "
+                            required
+                        />
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field appearance="fill">
+                        <input
+                            matInput
+                            placeholder="Please Insert Your Capitalization Phase "
+                            required
+                        />
+                    </mat-form-field>
+                </td>
+            </tr>
+
+            <div>
+                <button
+                    mat-button
+                    matStepperPrevious
+                    mat-raised-button
+                    color="warn"
+                    style="
+                        font-size: 12px !important;
+                        padding: 4px 8px !important;
+                    "
+                >
+                    Back
+                </button>
+                <button
+                    mat-button
+                    matStepperNext
+                    mat-raised-button
+                    color="primary"
+                    style="
+                        font-size: 12px !important;
+                        padding: 4px 8px !important;
+                    "
+                >
+                    Next
+                </button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step label="Global Warming Potential">
+        <form>
+            <div class="form-container">
+                <mat-form-field appearance="fill">
+                    <mat-label>Source</mat-label>
+                    <mat-select
+                        class="form-control"
+                        [(value)]="selectedSource"
+                        (selectionChange)="updateResults()"
+                        matNativeControl
+                        placeholder="Please Select Your Source"
+                    >
+                        <mat-option >100yr SAR</mat-option>
+                        <mat-option>100yr AR4</mat-option>
+                        <mat-option>100yr AR5 with CC feedback</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <div class="result-table">
+                    <div>
+                        <span>CO<sub>2</sub> : </span>
+                        <span> {{ co2Result }}</span>
+                    </div>
+                    <div>
+                        <span>CH<sub>4</sub> : </span>
+                        <span> {{ ch4Result }}</span>
+                    </div>
+                    <div>
+                        <span>N<sub>2</sub>O : </span>
+                        <span> {{ n2oResult }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-container">
+                <button
+                    mat-button
+                    matStepperPrevious
+                    mat-raised-button
+                    color="warn"
+                    class="custom-button"
+                >
+                    Back
+                </button>
+                <button
+                    mat-button
+                    matStepperNext
+                    mat-raised-button
+                    color="primary"
+                    class="custom-button"
+                >
+                    Next
+                </button>
+            </div>
+        </form>
+    </mat-step>
+
+    <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <p>You are now done.</p>
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+    </mat-step>
+</mat-stepper>
